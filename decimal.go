@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"math"
 	"math/big"
+	"github.com/vmihailenco/msgpack/v5"
 )
 
 var (
@@ -361,10 +362,10 @@ func nanGuard(yeildFunc func() Decimal, decimals ...Decimal) Decimal {
 
 
 
-func (d *big.Decimal) MarshalMsgpack() ([]byte, error) {
+func (d *Decimal) MarshalMsgpack() ([]byte, error) {
 	return msgpack.Marshal(d.fl)
 }
 
-func (d *big.Decimal) UnmarshalMsgpack(b []byte) error {
+func (d *Decimal) UnmarshalMsgpack(b []byte) error {
 	return msgpack.Unmarshal(b, &d.fl)
 }
