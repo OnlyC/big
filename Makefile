@@ -7,7 +7,7 @@ bootstrap:
 
 lint:
 	golint -set_exit_status
-	staticcheck github.com/sdcoffey/big
+	staticcheck github.com/OnlyC/big
 
 clean:
 	goimports -w $(files)
