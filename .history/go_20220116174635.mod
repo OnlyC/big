@@ -1,4 +1,4 @@
-module github.com/OnlyC/big
+module github.com/sdcoffey/big
 
 go 1.13
 
