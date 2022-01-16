@@ -358,13 +358,3 @@ func nanGuard(yeildFunc func() Decimal, decimals ...Decimal) Decimal {
 
 	return yeildFunc()
 }
-
-
-
-func (d *big.Decimal) MarshalMsgpack() ([]byte, error) {
-	return msgpack.Marshal(d.fl)
-}
-
-func (d *big.Decimal) UnmarshalMsgpack(b []byte) error {
-	return msgpack.Unmarshal(b, &d.fl)
-}
