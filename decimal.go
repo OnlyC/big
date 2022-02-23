@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"math"
 	"math/big"
+
 	"github.com/vmihailenco/msgpack/v5"
 )
 
@@ -131,7 +132,7 @@ func (d Decimal) Mul(factor Decimal) Decimal {
 // Div divides this Decimal by the denominator passed.
 func (d Decimal) Div(denominator Decimal) Decimal {
 	return nanGuard(func() Decimal {
-		return Decimal{d.cpy().Quo(d.fl, denominator.fl)}
+		return Decimal{d.cpy().SetPrec(32).Quo(d.fl, denominator.fl)}
 	}, d, denominator)
 }
 
@@ -359,8 +360,6 @@ func nanGuard(yeildFunc func() Decimal, decimals ...Decimal) Decimal {
 
 	return yeildFunc()
 }
-
-
 
 func (d *Decimal) MarshalMsgpack() ([]byte, error) {
 	return msgpack.Marshal(d.fl)
